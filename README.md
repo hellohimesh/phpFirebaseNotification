@@ -1,12 +1,15 @@
-# phpFirebaseNotification
+## phpFirebaseNotification
 
-<?php
+# Introduction
 
-#API access key from Google API's Console
+A Php FIrebase Push notification sample
+
+## Code Samples
+
+
     define( 'API_ACCESS_KEY', 'YOUR-SERVER-API-ACCESS-KEY-GOES-HERE' );
     $registrationIds = $_GET['id'];
 
-#prep the bundle
      $msg = array
           (
 		'body' 	=> 'Body  Of Notification',
@@ -27,8 +30,7 @@
 				'Authorization: key=' . API_ACCESS_KEY,
 				'Content-Type: application/json'
 			);
-
-#Send Reponse To FireBase Server	
+	
 		$ch = curl_init();
 		curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
 		curl_setopt( $ch,CURLOPT_POST, true );
@@ -38,6 +40,5 @@
 		curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
 		$result = curl_exec($ch );
 		curl_close( $ch );
+        echo $result;
 
-#Echo Result Of FireBase Server
-echo $result;
